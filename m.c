@@ -7,6 +7,11 @@ unsigned char n=0;
 
 /*
 Pitch Map:
+1Do:0x5B 91 *
+2Re:0x54 84 *
+3Mi:0x4d 77 *
+4Fa:0x47 71 *
+5So:0x41 65 *
 6La:0x3B 59 *
 7Xi:0x35 53 *
 ---
@@ -21,10 +26,13 @@ Pitch Map:
 1Do:0x18 24
 2Re:0x15 21
 3Mi:0x13 19 *
-4Fa:
-5So:
 */
-unsigned char code music_tab[] ={   
+unsigned char code music_tab[] ={
+0x5B, 0x80,
+0x54, 0x80,
+0x4d, 0x80,
+0x47, 0x80,
+0x41, 0x80,
 0x3B, 0x80,
 0x35, 0x80,
 0x30, 0x80,
@@ -195,7 +203,7 @@ void main()
 		{
 			i=i+1;
 			Beep=0;
-			PL(0xff)
+			PL(0xff);
 			n=music_tab[i++];
 			TR0=1;
 			while(n!=0)
