@@ -3,7 +3,8 @@
 
 sbit Beep =  P1^5;
 sbit Btn = P1^1;
-   
+sbit Swit = P1^2
+
 unsigned char n=0;
 
 /*
@@ -377,6 +378,8 @@ void main()
 	unsigned char i=0;   
 	unsigned char lastStat=0;
 	unsigned char ifPaused=0;
+	unsigned char *ap;
+	ap=music_tab;
 	TMOD&=0x0f;
 	TMOD|=0x01;
 	TH0=0xd8;
@@ -397,7 +400,7 @@ void main()
 		if(ifPaused){
 			continue;
 		}
-		p=music_tab[i];   
+		p=*(ap+i);   
 		if(p==0x00)       
 		{ 
 			i=0;
@@ -415,7 +418,7 @@ void main()
 			i=i+1;
 			Beep=0;
 			PL(0xff);
-			n=music_tab[i++];
+			n=*(ap+i++);
 			TR0=1;
 			while(n!=0)
 			{
@@ -426,8 +429,8 @@ void main()
 		} 
 		else         
 		{
-			m=music_tab[i++];
-			n=music_tab[i++];
+			m=*(ap+i++);
+			n=*(ap+i++);
 		}    
 		PL(m);
 		TR0=1;
