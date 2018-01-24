@@ -2,6 +2,7 @@
 #include <INTRINS.H>    
 
 sbit Beep =  P1^5;
+sbit Btn = P1^1;
    
 unsigned char n=0;
 
@@ -265,7 +266,8 @@ void main()
 { 
 	unsigned char p,m;  
 	unsigned char i=0;   
-	
+	unsigned char lastStat=0;
+	unsigned char ifPaused=0;
 	TMOD&=0x0f;
 	TMOD|=0x01;
 	TH0=0xd8;
@@ -273,9 +275,19 @@ void main()
 	IE=0x82;
 
 	P2=0x00;
-	
 	while(1)   
 	{
+		if(Btn){
+			if(lastStat==0){
+				lastStat=1;
+				ifPaused=~ifPaused;
+			}
+		}else{
+			lastStat=0;
+		}
+		if(ifPaused){
+			continue;
+		}
 		p=music_tab[i];   
 		if(p==0x00)       
 		{ 
