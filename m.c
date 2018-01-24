@@ -378,6 +378,10 @@ void main()
 	unsigned char i=0;   
 	unsigned char lastStat=0;
 	unsigned char ifPaused=0;
+	
+	unsigned char lastSong=0;
+	unsigned char lastSongStat=0;
+	
 	unsigned char *ap;
 	ap=music_tab;
 	TMOD&=0x0f;
@@ -400,6 +404,23 @@ void main()
 		if(ifPaused){
 			continue;
 		}
+		
+		if(Swit){
+			if(lastSongStat==0){
+				lastSongStat=1;
+				if(lastSong==0){
+					lastSong=1;
+					ap=music_tabs;
+				}else{
+					lastSong=0;
+					ap=music_tab;
+				}
+				i=0;
+			}
+		}else{
+			lastStat=0;
+		}
+		
 		p=*(ap+i);   
 		if(p==0x00)       
 		{ 
