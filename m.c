@@ -162,7 +162,12 @@ void main()
 		{ 
 			i=i+1;
 			Beep=0;
-			delayms(100);
+			n=music_tab[i++];
+			TR0=1;
+			while(n!=0)
+			{
+				delay(100);
+			}  
 			TR0=0;
 			continue;
 		} 
@@ -180,4 +185,4 @@ void main()
 		}  
 		TR0=0;
 	}   
-}
+}  
