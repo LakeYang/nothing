@@ -418,7 +418,7 @@ void main()
 				i=0;
 			}
 		}else{
-			lastStat=0;
+			lastSongStat=0;
 		}
 		
 		p=*(ap+i);   
